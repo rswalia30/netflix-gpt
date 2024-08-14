@@ -6,7 +6,7 @@ const Login = () => {
 
   const toggleSigninSignup = () => {
     setIsSignIn(!isSignIn);
-  }
+  };
 
   return (
     <>
@@ -15,15 +15,17 @@ const Login = () => {
       <img src="Netflix_Bg.jpg" alt="netflix-bg" className="absolute" />
 
       <form className="absolute bg-black bg-opacity-80 w-4/12 text-white mx-96 my-40 rounded-lg">
-        <h1 className="mx-4 my-4 text-3xl font-bold">{isSignIn ? "Sign In" : "Sign Up"}</h1>
+        <h1 className="mx-4 my-4 text-3xl font-bold">
+          {isSignIn ? "Sign In" : "Sign Up"}
+        </h1>
 
-        {!isSignIn &&
+        {!isSignIn && (
           <input
             type="text"
             placeholder="Enter Full Name"
             className="mx-4 my-2 p-4 w-96 rounded-lg bg-gray-600 bg-opacity-50"
           />
-        }
+        )}
 
         <input
           type="email"
@@ -41,10 +43,13 @@ const Login = () => {
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
 
-        <p className="mx-4 my-4 font-extralight cursor-pointer"
+        <p
+          className="mx-4 my-4 font-extralight cursor-pointer"
           onClick={toggleSigninSignup}
         >
-          {isSignIn ? "New To Netflix-GPT? Sign up now" : "Already Registered User? Sign in now"}
+          {isSignIn
+            ? "New To Netflix-GPT? Sign up now"
+            : "Already Registered User? Sign in now"}
         </p>
       </form>
     </>
