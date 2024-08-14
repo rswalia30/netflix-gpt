@@ -36,3 +36,7 @@
 
 - npx create-react-app netflix-gpt
 - setup Tailwind CSS
+- Routing of App (/login, /browse)
+- Header
+- Login Form
+- Sign up Form
