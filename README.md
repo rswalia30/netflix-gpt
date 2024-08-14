@@ -44,4 +44,4 @@
 - Formik Library
 - Form Validation
 - useRef Hook
-- Authentication demo
+- Authentication
