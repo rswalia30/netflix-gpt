@@ -1,6 +1,11 @@
 import { validate } from "../utils/validate";
 import Header from "./Header";
 import { useState, useRef } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -14,6 +19,8 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
+    // Check Validation Before Authentication
+    /************** VALIDATION ************************ */
     const emailValue = email.current?.value || "";
     const passwordValue = password.current?.value || "";
     const fullnameValue = fullname.current?.value || "";
@@ -23,11 +30,45 @@ const Login = () => {
       : validate(emailValue, passwordValue, fullnameValue);
 
     setErrorMessage(message);
-
-    // If validation message exists, return early
     if (message) return;
 
-    // user is valid
+    // if user email,pass is valid -> Authenticate
+    /************** AUTHENTICATION ************************ */
+    if (!isSignIn) {
+      // Sign Up Logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current?.value,
+        password.current?.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          alert("User Signed Up Successfull");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+    } else {
+      // Sign In Logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current?.value,
+        password.current?.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          alert("Sign In Successfull");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+    }
   };
 
   return (
