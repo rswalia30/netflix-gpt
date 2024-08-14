@@ -14,15 +14,20 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
-    // console.log(email);
-    // console.log(password);
-    const message = validate(
-      email.current.value,
-      password.current.value,
-      fullname.current.value
-    );
-    // console.log(message);
+    const emailValue = email.current?.value || "";
+    const passwordValue = password.current?.value || "";
+    const fullnameValue = fullname.current?.value || "";
+
+    const message = isSignIn
+      ? validate(emailValue, passwordValue)
+      : validate(emailValue, passwordValue, fullnameValue);
+
     setErrorMessage(message);
+
+    // If validation message exists, return early
+    if (message) return;
+
+    // user is valid
   };
 
   return (
