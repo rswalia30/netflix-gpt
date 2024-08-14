@@ -44,4 +44,6 @@
 - Formik Library
 - Form Validation
 - useRef Hook
+- setup Firebase
+- Deploy using Firebase
 - Authentication
