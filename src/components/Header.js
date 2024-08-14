@@ -1,7 +1,11 @@
 const Header = () => {
   return (
     <>
-      <h1>This is Header</h1>
+      <img
+        src="Netflix_Logo.png"
+        alt="netflix-logo"
+        className="absolute w-52 mx-32 p-3 bg-gradient-to-b from-black z-30"
+      />
     </>
   );
 };
