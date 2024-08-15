@@ -46,4 +46,4 @@
 - useRef Hook
 - setup Firebase
 - Deploy using Firebase
-- Authentication
+- Authentication (signup/signin)
