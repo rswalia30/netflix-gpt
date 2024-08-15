@@ -52,7 +52,9 @@
 - After signin navigate to /browse
 - Implement Signout
 - user context
+- Protected Routes
 - Fetch movies from TMDB API
+- Generate API Key & API Access Token
 
 > username : rohit@gmail.com
 > password : Rohit123
