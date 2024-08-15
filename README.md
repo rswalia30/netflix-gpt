@@ -51,4 +51,5 @@
 - Google sign in
 - After signin navigate to /browse
 - Implement Signout
+- user context
 - Fetch movies from TMDB API

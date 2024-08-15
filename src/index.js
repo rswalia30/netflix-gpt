@@ -10,11 +10,12 @@ import {
 } from "react-router-dom";
 import Login from "./components/Login";
 import Browse from "./components/Browse";
+import Error from "./components/Error";
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="" element={<App />}>
+      <Route path="" element={<App />} errorElement={<Error />}>
         <Route path="/" element={<Login />} />
 
         {/* Protected Route */}
