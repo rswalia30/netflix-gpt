@@ -48,8 +48,8 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
-          alert("User Signed Up Successfull");
+          // console.log(user);
+          alert("User Sign Up Successfull");
           navigate("/");
         })
         .catch((error) => {
@@ -66,13 +66,13 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
 
           setUserInfo({
             email: user.email,
           });
 
-          alert("Sign In Successfull");
+          // alert("Sign In Successfull");
           navigate("/browse");
         })
         .catch((error) => {
@@ -102,7 +102,7 @@ const Login = () => {
           photoURL: user.photoURL,
         });
 
-        alert("Google Sign In Successfull");
+        // alert("Google Sign In Successfull");
         navigate("/browse");
       })
       .catch((error) => {

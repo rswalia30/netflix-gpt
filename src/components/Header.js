@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
-import { useContext, useImperativeHandle } from "react";
+import { useContext } from "react";
 import UserInfo from "../utils/UserInfo";
 
 const Header = () => {
@@ -31,35 +31,6 @@ const Header = () => {
           />
         </div>
       ) : (
-        // <div className="w-full absolute p-3 bg-gradient-to-b from-black z-20 flex justify-between">
-        //   <img
-        //     src="Netflix_Logo.png"
-        //     alt="netflix-logo"
-        //     className="w-32 h-14"
-        //   />
-        //   <div className="flex">
-        //     {userInfo.photoURL && (
-        //       <img
-        //         src={userInfo.photoURL}
-        //         alt="user-photo"
-        //         className="my-3 rounded-full w-10 h-10"
-        //       />
-        //     )}
-
-        //     {userInfo.displayName && (
-        //       <p className="mx-3 my-3 font-serif text-white">
-        //         {userInfo.displayName}
-        //       </p>
-        //     )}
-
-        //     <p className="mx-3 my-3 font-light text-white">{userInfo.email}</p>
-
-        //     <button className="mx-3" onClick={handleSignoutBtn}>
-        //       <img src="signout-btn.png" alt="signout-btn" />
-        //       <span className="font-light text-white">Sign Out</span>
-        //     </button>
-        //   </div>
-        // </div>
         <div className="w-full absolute p-3 bg-gradient-to-b from-black z-20 flex justify-between">
           <img
             src="Netflix_Logo.png"

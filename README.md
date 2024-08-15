@@ -53,3 +53,8 @@
 - Implement Signout
 - user context
 - Fetch movies from TMDB API
+
+> username : rohit@gmail.com
+> password : Rohit123
+> username : pratham@gmail.com
+> password : Pratham123
