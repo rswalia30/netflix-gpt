@@ -36,14 +36,19 @@
 
 - npx create-react-app netflix-gpt
 - setup Tailwind CSS
-- Routing of App (/login, /browse)
+- Routing of App ( / : <Login/>, /browse : <Browse/> )
 - Header
 - Login Form
 - Sign up Form
 - Toggle Signin-Signup
 - Formik Library
+- onSubmit={(e) => e.preventDefault()}
 - Form Validation
 - useRef Hook
 - setup Firebase
 - Deploy using Firebase
 - Authentication (signup/signin)
+- Google sign in
+- After signin navigate to /browse
+- Implement Signout
+- Fetch movies from TMDB API

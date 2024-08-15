@@ -1,5 +1,4 @@
 import { validate } from "../utils/validate";
-import Header from "./Header";
 import { useState, useRef } from "react";
 import {
   createUserWithEmailAndPassword,
@@ -8,6 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -15,6 +15,7 @@ const Login = () => {
   const password = useRef(null);
   const fullname = useRef(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const toggleSigninSignup = () => {
     setIsSignIn(!isSignIn);
@@ -47,6 +48,7 @@ const Login = () => {
           const user = userCredential.user;
           console.log(user);
           alert("User Signed Up Successfull");
+          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -64,6 +66,7 @@ const Login = () => {
           const user = userCredential.user;
           console.log(user);
           alert("Sign In Successfull");
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -78,27 +81,21 @@ const Login = () => {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
         const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
         console.log(user);
+        // console.log(user.displayName);
         console.log(credential);
         console.log(token);
         alert("Google Sign In Successfull");
+        navigate("/browse");
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.customData.email;
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
         console.log(errorCode + " - " + errorMessage);
         console.log(email + " - " + credential);
       });
@@ -106,8 +103,6 @@ const Login = () => {
 
   return (
     <>
-      <Header />
-
       <img src="Netflix_Bg.jpg" alt="netflix-bg" className="absolute" />
 
       <form
