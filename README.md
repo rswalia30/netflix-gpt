@@ -47,3 +47,4 @@
 - setup Firebase
 - Deploy using Firebase
 - Authentication (signup/signin)
+- Google sign in
