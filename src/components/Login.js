@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 
@@ -71,6 +73,37 @@ const Login = () => {
     }
   };
 
+  const handleGoogleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log(user);
+        console.log(credential);
+        console.log(token);
+        alert("Google Sign In Successfull");
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.log(errorCode + " - " + errorMessage);
+        console.log(email + " - " + credential);
+      });
+  };
+
   return (
     <>
       <Header />
@@ -111,11 +144,26 @@ const Login = () => {
         <p className="text-red-600 mx-4 font-semibold my-2">{errorMessage}</p>
 
         <button
-          className="mx-4 my-2 p-4 w-96 bg-red-700 text-white rounded-lg"
+          className="mx-4 my-2 p-4 w-96 bg-red-600 hover:bg-red-700 text-white rounded-lg"
           onClick={handleButtonClick}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
+
+        {isSignIn && (
+          <button
+            // className="mx-4 my-2 w-96 p-4 border flex justify-center gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+            className="mx-4 my-2 p-4 w-96 flex justify-center gap-2 bg-white text-black rounded-lg"
+            onClick={handleGoogleSignIn}
+          >
+            <img
+              className="w-6 h-6"
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
+              alt="google logo"
+            />
+            <span>Sign In with Google</span>
+          </button>
+        )}
 
         <p
           className="mx-4 my-4 font-extralight cursor-pointer"
