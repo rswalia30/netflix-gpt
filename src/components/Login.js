@@ -1,5 +1,5 @@
 import { validate } from "../utils/validate";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import UserInfo from "../utils/UserInfo";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -16,6 +17,7 @@ const Login = () => {
   const fullname = useRef(null);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const { setUserInfo } = useContext(UserInfo);
 
   const toggleSigninSignup = () => {
     setIsSignIn(!isSignIn);
@@ -65,6 +67,11 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
+
+          setUserInfo({
+            email: user.email,
+          });
+
           alert("Sign In Successfull");
           navigate("/browse");
         })
@@ -86,8 +93,15 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         // console.log(user.displayName);
-        console.log(credential);
-        console.log(token);
+        // console.log(credential);
+        // console.log(token);
+
+        setUserInfo({
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+
         alert("Google Sign In Successfull");
         navigate("/browse");
       })
